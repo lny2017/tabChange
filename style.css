@@ -1,0 +1,34 @@
+*{
+    margin: 0;padding: 0;
+}
+#tabNav{
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+#tabNav li{
+    flex-grow: 1;
+    text-align: center;
+    list-style: none;
+    line-height: 2;
+    cursor: pointer;
+    user-select:none;
+}
+#tabNav .liBg{
+    background: skyblue;
+}
+#tabContent{
+    width: 100%;
+    height: 300px;
+}
+#tabContent div{
+    width: 100%;
+    height: 100%;
+    background: #eee;
+    text-align: center;
+    font-size: 100px;
+    display: none;
+}
+#tabContent .oDiv{
+    display: block;
+}
