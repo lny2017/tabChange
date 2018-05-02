@@ -5,10 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+        html,body,.wrap{
+            width: 100%;
+        }
+        ul{
+            width: 100%;
+            position: relative;
+            padding-left: 50px;
+            white-space: nowrap;
+            /* border: 1px solid #000; */
+        }
+        li{
+            margin: 0;padding: 0;
+            width: 33.3%;
+            display: inline-block;
+            text-align: center;
+            background: red;
+            float: left;
+            border-left: 1px solid #000;
+        }
+        .a{
+            position: absolute;
+            width: 50px;
+            left: 0;
+            background: cadetblue;
+            border: 0;
+        }
+    </style>
 </head>
 <body>
     <div class="wrap">
         <h1>Hello world！</h1>
+        <ul>
+            <li class="a">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
     </div>
 </body>
 </html>
