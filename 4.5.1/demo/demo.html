@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="wrap">
+        <ul>
+            <li v-for='item in param' :key="item.id" >
+                <p @click='fn(item.id)'>{{item.name}}</p>
+                <ul v-if='bool == item.id'>
+                    <li v-for='item1 in item.data'>
+                        <p @click='fns(item1.id)'>{{item1.name}}</p>
+                        <ul v-if='bools == item1.id'>
+                            <li v-for='item2 in item1.data' @click='fn0(item.name+item1.name+item2.name)'>{{item2.name}}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <h1>我想买------</h1>
+        <ul>
+            <li v-for='(item, index) in result' :key='index'>{{item}} <span @click='del(index)'>delete</span></li>
+        </ul>
+    </div>
+
+    <script src="./vue.min.js"></script>
+    <script src="./jquery.min.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#wrap',
+            data: function () {
+                return {
+                    param: '',
+                    bool: false,
+                    bools: false,
+                    result: []
+                }
+            },
+            beforeCreate: function () {
+                console.log('beforeCreate');
+                $.ajax({
+                    url: 'http://localhost:3000/demo',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (param) { 
+                        console.log(param);
+                        vm.param = param.data;
+                    }
+                })
+            },
+            methods: {
+                fn (id) {
+                    this.bool == id? this.bool = !id: this.bool = id;
+                },
+                fns (id) {
+                    this.bools == id? this.bools = !id: this.bools = id;
+                },
+                fn0 (result) {
+                    if (this.result.indexOf(result) === -1){
+                        this.result.push(result);
+                        this.bools = '';
+                        this.bool = '';
+                    } else {
+                        alert('已添加过了');
+                    }
+                },
+                del (index) {
+                    this.result.pop(index);
+                    console.log(this.result);
+                }
+            }
+        });
+        
+    </script>
+</body>
+</html>
