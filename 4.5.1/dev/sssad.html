@@ -1,0 +1,155 @@
+$("#shadow").height($(window).height());
+var mobiles, names, userCode, shareName, shareGoods;
+var host = window.location.host; // 鑾峰彇鍩熷悕
+var openUrl = window.location.href;
+var baseImg = "http://syimg.sheyuan.com/";
+// var baseUrl = 'http://dzncp.sheyuan.com/bulk_api/'; //鐢熶骇鐜
+var baseUrl = "http://456.sheyuan.com/bulk_api/"; //寮€鍙戠幆澧�
+window.URLParams = parseQueryUrl(window.location.href);
+var goodsId = window.URLParams.goodsId;
+var shareDesc;
+var shareTitle = "绀惧憳缃�-璁╁ぉ涓嬫病鏈夐毦鍗栫殑鍐滀骇鍝�";
+var shareImg = "http://"+host+"/share/images/shareLogo.png";
+var shareUrl = "http://"+host+"/share/index.html?goodsId="+goodsId+"";
+var details = new Vue({
+	el: "#cons",
+	data: {
+		content: [],
+		imglist: [],
+		classSpec: [],
+		imgUrls: '',
+		videoUrl: '',
+		status: ''
+	},
+	methods: {
+		shows: function() {
+			var mark = document.getElementById("mark");
+			mark.style.display = "block";
+		},
+		hides: function() {
+			var mark = document.getElementById("mark");
+			mark.style.display = "none";
+		}
+	}
+});
+
+ajaxWx(callBackwx);
+// 鑾峰彇寰俊鏉冮檺
+function ajaxWx(callback) {
+    var serviceUrlwx = "http://sywdzwx.sheyuan.com/v3/h5/weixin/getwxjssdkconfig";
+    var paramwx2 = {
+        url: openUrl,
+    }
+    $.ajax({
+        url: serviceUrlwx,
+        type: "GET",
+        dataType: "json",
+        data: paramwx2 || {},
+        success: callBackwx,
+        error:function () {
+
+        }
+    })
+}
+function callBackwx(data) {
+	console.log(data);
+	// console.log(data.data.appId);
+	wx.config({
+	    debug: false, // 寮€鍚皟璇曟ā寮�,璋冪敤鐨勬墍鏈塧pi鐨勮繑鍥炲€间細鍦ㄥ鎴风alert鍑烘潵锛岃嫢瑕佹煡鐪嬩紶鍏ョ殑鍙傛暟锛屽彲浠ュ湪pc绔墦寮€锛屽弬鏁颁俊鎭細閫氳繃log鎵撳嚭锛屼粎鍦╬c绔椂鎵嶄細鎵撳嵃銆�
+	    appId: data.data.appId, // 蹇呭～锛屽叕浼楀彿鐨勫敮涓€鏍囪瘑
+	    timestamp: data.data.timestamp, // 蹇呭～锛岀敓鎴愮鍚嶇殑鏃堕棿鎴�
+	    nonceStr: data.data.nonceStr, // 蹇呭～锛岀敓鎴愮鍚嶇殑闅忔満涓�
+	    signature: data.data.signature,// 蹇呭～锛岀鍚嶏紝瑙侀檮褰�1
+	    jsApiList: [
+	        'onMenuShareTimeline',
+	        'onMenuShareAppMessage'
+	    ] // 蹇呭～锛岄渶瑕佷娇鐢ㄧ殑JS鎺ュ彛鍒楄〃锛屾墍鏈塉S鎺ュ彛鍒楄〃瑙侀檮褰�2
+	});
+	wx.error(function(res){
+		console.log(res);
+	    // config淇℃伅楠岃瘉澶辫触浼氭墽琛宔rror鍑芥暟锛屽绛惧悕杩囨湡瀵艰嚧楠岃瘉澶辫触锛屽叿浣撻敊璇俊鎭彲浠ユ墦寮€config鐨刣ebug妯″紡鏌ョ湅锛屼篃鍙互鍦ㄨ繑鍥炵殑res鍙傛暟涓煡鐪嬶紝瀵逛簬SPA鍙互鍦ㄨ繖閲屾洿鏂扮鍚嶃€�
+
+	});
+	window.wx && wx.ready(function(){
+	    var wxFriendData = {
+	        'link': shareUrl,
+	        'imgUrl': shareImg,
+	        'title': shareTitle,
+	        'desc': shareDesc,
+	        success:function(){
+				console.log("鍒嗕韩鎴愬姛");
+	        }
+	    };
+	    var wxTimelineData = {
+			'link': shareUrl,
+	        'imgUrl': shareImg,
+	        'title': shareTitle,
+	        'desc': shareDesc,
+	        success:function(){
+				console.log("鍒嗕韩鎴愬姛");
+	        }
+	    };
+	    wx.onMenuShareAppMessage(wxFriendData);
+	    wx.onMenuShareTimeline(wxTimelineData);
+	})
+}
+	mui.ajax(baseUrl + 'v3/supply/detail', {
+		data: {
+			goodsId: goodsId
+		},
+		dataType: 'json',
+		type: 'POST',
+		timeout: 10000,
+		success: function(data) {
+			console.log(data.data);
+			shareName = data.data.owner.name;
+			shareGoods = data.data.name;
+			shareDesc = shareName + "鍙戝竷浜嗏€�" + shareGoods + "鈥濅俊鎭�,蹇潵鍥磋銆備拱鍗栧啘浜у搧灏变笂绀惧憳缃�";
+			if(!data.code) {
+				details.content = data.data;
+				details.classSpec = data.data.classSpec;
+				details.imglist = data.data.imgs.split(",");
+				goodsId = data.data.goodsId;
+				goodname = data.data.name;
+				mobiles = data.data.owner.mobile;
+				userCode = data.data.owner.userCode;
+				names = data.data.owner.name;
+				var allvideo = data.data.vedios.split(",");
+				var videos = baseImg + allvideo[0];
+				details.videoUrl = videos;
+				var sear = new RegExp('mp4');銆€
+				if(sear.test(videos)) {銆€銆€
+					details.imgUrls = videos.replace('.mp4', '.jpg');銆€銆€
+				} else {
+					details.imgUrls = videos.replace('.MOV', '.jpg');
+				}
+			}
+		},
+		error: function(xhr, type, errorThrown) {
+			mui.toast('缃戠粶绻佸繖锛岃绋嶅悗閲嶈瘯锛�');
+		}
+	});
+//鎷ㄦ墦鐢佃瘽
+function contactNum() {
+	mui.ajax(baseUrl + '/v3/supply/contactNum', {
+		data: {
+			goodsId: goodsId
+		},
+		dataType: 'json',
+		type: 'get',
+		timeout: 10000,
+		success: function(data) {
+			console.log(data.data.result);
+			if(!data.code) {
+				var result = data.data.result;
+				if(result == 1) {}
+
+			} else {
+				mui.toast(data.msg);
+			}
+		},
+		error: function(xhr, type, errorThrown) {
+			mui.toast('缃戠粶绻佸繖锛岃绋嶅悗閲嶈瘯锛�');
+		}
+	});
+}

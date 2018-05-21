@@ -25,11 +25,20 @@
         <ul>
             <li v-for='(item, index) in result' :key='index'>{{item}} <span @click='del(index)'>delete</span></li>
         </ul>
+        <!-- {{aaa | capitalize}} -->
+        <input type="text" v-model='aaa'>
+        <p>{{aaa | capitalize}}</p>
     </div>
 
     <script src="./vue.min.js"></script>
     <script src="./jquery.min.js"></script>
     <script>
+        Vue.filter('capitalize', function (value) {
+            if (!value) return ''
+            value = value.toString()
+            return value.charAt(0).toUpperCase() + value.slice(1)
+        })
+
         var vm = new Vue({
             el: '#wrap',
             data: function () {
@@ -37,20 +46,26 @@
                     param: '',
                     bool: false,
                     bools: false,
-                    result: []
+                    result: [],
+                    aaa: 'test'
+                }
+            },
+            computed: {
+                fnn: function () {
+                    return aaa;
                 }
             },
             beforeCreate: function () {
                 console.log('beforeCreate');
-                $.ajax({
-                    url: 'http://localhost:3000/demo',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function (param) { 
-                        console.log(param);
-                        vm.param = param.data;
-                    }
-                })
+                // $.ajax({
+                //     url: 'http://localhost:3000/demo',
+                //     type: 'GET',
+                //     dataType: 'json',
+                //     success: function (param) { 
+                //         console.log(param);
+                //         vm.param = param.data;
+                //     }
+                // })
             },
             methods: {
                 fn (id) {
@@ -78,3 +93,11 @@
     </script>
 </body>
 </html>
+
+
+
+
+当前应用版本：4.0.0 at static/js/update/appUpdate.js:22
+版本信息{"code":0,"msg":"","data":{"appVersionInfo":{"id":1,"appCode":"001","appName":"用户版","deviceType":0,"version":"4.0.0","changeLog":"APP增加采购商录入，整体页面进行全新设计","forceUpdate":1,"downUrl":"http://apk.sheyuan.com/dazong-user-v4.0.0.apk","createTime":1504168401000,"resourceVersion":"4.0.0.10","resourceUrl":"http://456.sheyuan.com/download/shop.wgt","resourceForceUpdate":0}},"timestamp":1525831559671} at static/js/update/appUpdate.js:38
+4.0.0.8---------------取资源版本号比对版本（前面是本地，后面是服务器）4.0.0.10 at static/js/update/appUpdate.js:48
+http://456.sheyuan.com/download/shop.wgt-----------提示更新 at static/js/update/appUpdate.js:56

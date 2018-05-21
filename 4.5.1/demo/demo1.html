@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="imgs"></div>
+    <script src="./jquery.min.js"></script>
+    <script>
+        
+var comic_url_list = ['http://mh.damowang.com/comics/slices/97/19497/3241273/930f33213fa080324d666e19b739f616.jpg', 'http://mh.damowang.com/comics/slices/97/19497/3241273/309614696e74c5a7eb1f976b0796554a.jpg', 'http://mh.damowang.com/comics/slices/97/19497/3241273/8fe3cca4518941f78b1191eeaea47813.jpg',
+'http://mh.damowang.com/comics/slices/97/19497/3241273/e8cea4de0dc44cfbdae5be83eda9cb07.jpg', 'http://mh.damowang.com/comics/slices/97/19497/3241273/d05b692ff7ab6b05fed6a39af527980a.jpg',
+'http://mh.damowang.com/comics/slices/97/19497/3241273/d05b692ff7ab6b05fed6a39af527980a.jpg', 'http://mh.damowang.com/comics/slices/97/19497/3241273/fa771b228d2e4feee8a78735f5acf226.jpg', 'http://mh.damowang.com/comics/slices/97/19497/3241273/f7a2c62af0525bed127ed1a44700f1de.jpg',
+'http://mh.damowang.com/comics/slices/97/19497/3241273/c0adf71ee37d3fa111e0fdaad52c4be6.jpg', 'http://mh.damowang.com/comics/slices/97/19497/3241273/39d1bb5fb2b09a4eacd481d75c842dd7.jpg',
+'http://mh.damowang.com/comics/slices/97/19497/3241273/ea5b1e3c5c370626daabfe40a18331c4.jpg'
+];
+var doms = '';
+comic_url_list.forEach(function(src ,ind){
+    doms += `
+    <div class="loading">
+        <img data-src='${src}' src='zyIcon.png'/>
+    </div>
+    `;
+})
+var imgBox = $('.imgs');            
+imgBox.html(doms);
+
+    // 图片加载中
+var imgs = imgBox.find('img');
+var time0 = new Date();
+var count = 0;
+imgs.on('load', function(){
+    console.log('jiazaizhong')
+    count++;  // 闪屏
+    if (count > comic_url_list.length){
+        return;
+    } else {
+        var time1 = new Date();
+    }
+    if (( time1 - time0) > 3000) {
+        $(this).attr('src', 'dbIcon.png');
+    } else {
+        $(this).attr('src', $(this).attr('data-src'));
+    }
+})
+imgs.on('error', function(){
+    $(this).attr('src', 'dbIcon.png');
+    var dataSrc = $(this).attr('data-src');
+    $(this).click(function (e) {
+        if ( $(this).attr('src') === 'dbIcon.png' ) {
+            e.stopPropagation();
+            console.log($(this));
+            $(this).attr('src', dataSrc);
+        }
+    })
+})
+
+
+
+    
+    </script>
+</body>
+</html>
+
+
+

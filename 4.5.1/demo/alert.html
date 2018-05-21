@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .wrapper{
+            width: 100%;
+            height: 100%;
+        }
+        .filter{
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* display: none; */
+        }
+
+        .filter-con{
+            width: 90%;
+            height: 200px;
+            background: #f8f8f8;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+        .filter-tit{
+            padding: 10px;
+            position: relative;
+            border-bottom: 1px solid #cccccc;
+        }
+        .filter-close{
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+        }
+        
+        .filter-dir{
+            padding: 10px;
+            line-height: 2;
+            flex: 1;
+            text-indent: 2em;
+        }
+        .filter-btns{
+            width: 100%;
+            height: 44px;
+            display: flex;
+        }
+        .filter-btns button{
+            width: 50%;
+            border: 0;
+            outline: none;
+            color: #333333;
+        }
+        .filter-btns button:last-child{
+            background: #09f;
+        }
+    </style>
+</head>
+<body >
+    <div class="wrapper" id="app">
+        <button id="btn">open</button>
+        <alert-demo></alert-demo>
+    </div>
+
+    <!-- <alert-demo></alert-demo>> -->
+    <!-- <div class='filter' v-if='bool'>
+        <div class='filter-con'>
+            <h3 class='filter-tit'>
+                {{tit? tit: 'This is a tip!'}}
+                <span class='filter-close' @click='closeFn()'>×</span>
+            </h3>
+            <p class='filter-dir'>
+                {{dir? dir: 'This is a direction!'}}
+            </p>
+            <div class='filter-btns'>
+                <button @click='cancelFn()'>{{cancel? cancel: 'cancel'}}</button>
+                <button @click='okFn()'>{{ok? ok: 'ok'}}</button>
+            </div>
+        </div>
+    </div> -->
+
+    <script src='./vue.min.js'></script>
+    <script>
+        Vue.component('alert-demo', {
+            data: function() {
+                return {
+                    tit: '',
+                    dir: '',
+                    cancel: '',
+                    ok: '',
+                    bool: true
+                }
+            },
+            methods: {
+                closeFn: function () {
+                    this.bool = false;
+                },
+                cancelFn: function () {
+                    this.bool = false;
+                },
+                okFn: function () {
+                    this.bool = false;
+                    alert(this.dir);
+                }
+            },
+            beforeCreate () {
+                console.log('beforeCreate');
+                console.log(this);
+            },
+            created () {
+                console.log('created');
+            },
+            beforeMount () {
+                console.log('beforeMount');
+            },
+            mounted () {
+                console.log('mounted');
+            },
+
+            template: "<div class='filter' v-if='bool'>\
+                        <div class='filter-con'>\
+                            <h3 class='filter-tit'>\
+                                {{tit? tit: 'This is a tip!'}}\
+                                <span class='filter-close' @click='closeFn()'>×</span>\
+                            </h3>\
+                            <p class='filter-dir'>\
+                                {{dir? dir: 'This is a direction!'}}\
+                            </p>\
+                            <div class='filter-btns'>\
+                                <button @click='cancelFn()'>{{cancel? cancel: 'cancel'}}</button>\
+                                <button @click='okFn()'>{{ok? ok: 'ok'}}</button>\
+                            </div>\
+                        </div>\
+                    </div>\
+                ",
+
+        })
+
+        new Vue({
+            el: '#app'
+        })
+        // var vm = new Vue({
+        //     el: '.filter',
+        //     data: function() {
+        //         return {
+        //             tit: '',
+        //             dir: '',
+        //             cancel: '',
+        //             ok: '',
+        //             bool: false
+        //         }
+        //     },
+        //     methods: {
+        //         closeFn: function () {
+        //             this.bool = false;
+        //         },
+        //         cancelFn: function () {
+        //             this.bool = false;
+        //         },
+        //         okFn: function () {
+        //             this.bool = false;
+        //             alert(this.dir);
+        //         }
+        //     },
+        //     beforeCreate () {
+        //         console.log('beforeCreate');
+        //         console.log(this);
+        //     },
+        //     created () {
+        //         console.log('created');
+        //     },
+        //     beforeMount () {
+        //         console.log('beforeMount');
+        //     },
+        //     mounted () {
+        //         console.log('mounted');
+        //     }
+        // })
+
+        
+    </script>
+</body>
+</html>

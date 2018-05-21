@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>新人注册</title>
+    <link href="./mui.min.css" rel="stylesheet" />
+    <style>
+        @charset "utf-8";
+        *{
+        margin:0px;
+        padding:0px;
+        text-decoration:none;
+        box-sizing:border-box;
+        font-size:0.14rem;
+        font-style:normal;
+        font-weight:normal;
+        }
+        ul,li{
+        list-style:none;
+        }
+        /* html{
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            font-size:625%;
+        } */
+        img,div,body,html,ul,li,a{
+        -webkit-touch-callout: none; 
+        }
+        input,button{
+        outline:0;
+
+        }
+        button{
+        cursor:pointer;
+        }
+        input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
+            color: #999999;
+        }
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        .wrapper{
+            width: 100%;
+            height: 100%;
+            background: url('./myshareBg.png') repeat-y top;
+            background-size: cover;
+            overflow-y: scroll;
+            position: relative;
+        }
+        .banner-text{
+            width: 100%;
+            text-align: center;
+            padding-top: 0.25rem;
+        }
+        .banner-text img{
+            width: 2.56rem;
+        }
+        .reginBox{
+            width: 100%;
+            padding: 0.05rem 0.35rem 0 0.35rem;
+        }
+        .userMes{
+            width: 100%;
+            /* padding: 0 0.06rem; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .userImg{
+            width: 0.6rem;
+            height: 0.48rem;
+            padding: 0 0.06rem;
+        }
+        .userImg img{
+            display: block;
+            width: 0.48rem;
+            height: 0.48rem;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .userMes p{
+            flex:1;
+            font-family: '.PingFang-SC-Regular';
+            font-size: 0.12rem;
+            color: #FFFFFF;
+            margin: 0;
+        }
+        .userMes p span{
+            color: #F2F780;
+        }
+        .formBox{
+            width: 100%;
+            padding-top: 0.04rem;
+        }
+        .reginSuccess{
+            width: 100%;
+            height: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .reginSuccess img{
+            width: 0.45rem;
+            height: 0.45rem;
+        }
+        .reginSuccess p{
+            padding-left: 0.15rem;
+            font-family: '.PingFang-SC-Regular';
+            font-size: 0.16rem;
+            color: #FFFFFF;
+        }
+        .formBox ul{
+            width: 100%;
+            height: 1.5rem;
+        }
+        .formBox ul li{
+            width: 100%;
+            height: 0.42rem;
+            margin-top: 0.12rem;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .formBox ul li input{
+            width: 100%;
+            height: 100%;
+            border: 0;
+            outline: none;
+            border-radius: 4px;
+            font-size: 0.14rem;
+            padding: 0;
+        }
+        .formBox ul li input[type='text']{
+            text-indent: 0.1rem;
+        }
+        .formBox ul li input[type='tel']{
+            text-indent: 0.1rem;
+        }
+        .formBox ul li:nth-child(3){
+            display: flex;
+            justify-content: space-between;
+        }
+        .formBox ul li .sureImg{
+            position: absolute;
+            right: 0.05rem;
+            top: 0.05rem;
+            width: 0.98rem;
+            height: 0.33rem;
+        }
+        .formBox ul li .sureNum{
+            width: 1.85rem;
+        }
+        .formBox ul li .sureBtn{
+            width: 1.08rem;
+            background: #FFD332;
+            /* background: #DDDDDD; */
+            border: 0;
+            outline: none;
+            border-radius: 4px;
+            font-family: '.PingFang-SC-Regular';
+            font-size: 0.14rem;
+            color: #FFFFFF;
+        }
+        .formBox ul li .sureBtns{
+            width: 1.08rem;
+            background: #DDDDDD;
+            /* background: #DDDDDD; */
+            border: 0;
+            outline: none;
+            border-radius: 4px;
+            font-family: '.PingFang-SC-Regular';
+            font-size: 0.14rem;
+            color: #FFFFFF;
+        }
+        .reginBtn{
+            width: 100%;
+            padding-top: 0.16rem;
+        }
+        .reginBtn p{
+            width: 100%;
+            height: 0.42rem;
+            line-height: 0.42rem;
+            text-align: center;
+            border-radius: 4px;
+            background: #DDDDDD;
+            background: #FFD332;
+            font-family: '.PingFang-SC-Medium';
+            font-size: 0.16rem;
+            color: #FFFFFF;
+        }
+        .reginBtn .p{
+            width: 100%;
+            height: 0.42rem;
+            line-height: 0.42rem;
+            text-align: center;
+            border-radius: 4px;
+            background: #DDDDDD;
+            font-family: '.PingFang-SC-Medium';
+            font-size: 0.16rem;
+            color: #FFFFFF;
+        }
+        .reginBtn p a{
+            width: 100%;
+            height: 100%;
+            color: #FFFFFF;
+        }
+        .downLead{
+            width: 100%;
+            padding-top: 0.24rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        .downLeadImg{
+            width: 0.87rem;
+            height: 0.87rem;
+            border: 1px solid rgba(225, 225, 225, 0.5);
+            /* padding: 0.04rem; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* position: relative; */
+        }
+        .downLeadImg img{
+            width: 0.8rem;
+            height: 0.8rem;
+            display: block;
+            /* position: absolute;
+            left: 0.03rem;
+            top: 0.02rem; */
+        }
+        .downLeadText{
+            width: 2.04rem;
+        }
+        .downLeadText h3{
+            font-family: '.PingFang-SC-Medium';
+            font-size: 0.15rem;
+            color: #FFFFFF;
+            line-height: 0.29rem;
+            height: 0.29rem;
+            margin: 0;
+        }
+        .downLeadText p{
+            font-family: '.PingFang-SC-Regular';
+            font-size: 0.12rem;
+            color: #CCF2F9;
+            line-height: 1.5;
+            margin: 0;
+            text-align: justify;
+        }
+
+        .filter{
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .filterCon{
+            width: 2.9rem;
+            height: 1.31rem;
+            background: #FFFFFF;
+            border-radius: 12px;
+        }
+        .filterCon h3{
+            height: 0.78rem;
+            line-height: 0.78rem;
+            text-align: center;
+            font-family: '.PingFang-SC-Regular';
+            font-size: 0.14rem;
+            color: #333333;
+            letter-spacing: 0.15px;
+            border-bottom: 1px solid #EEEEEE;
+        }
+        .filterCon p{
+            height: 0.52rem;
+            line-height: 0.52rem;
+            display: flex;
+        }
+        .filterCon p span{
+            width: 100%;
+            text-align: center;
+            font-family: '.PingFang-SC-Regular';
+            font-size: 0.15rem;
+            color: #00A8C6;
+            letter-spacing: 0.16px;
+        }
+        /* .filterCon p span:first-child{
+            border-right: 1px solid #EEEEEE;
+            color: #9B9B9B;
+        } */
+    </style>
+    <script>
+        var html = document.getElementsByTagName('html')[0];
+        html.style.fontSize = html.clientWidth / 3.75 + "px";
+    </script>
+</head>
+<body>
+    <div class="wrapper" id="inviteRegin" v-cloak class="mui-content">
+        <!-- <div class="filter" v-if='filterBool'>
+            <div class="filterCon">
+                <h3>您已经是注册用户，无需重新注册!</h3>
+                <p>
+                    <span @click='closeFilter()'>关闭</span>
+                </p>
+            </div>
+        </div> -->
+        <div class="banner-text">
+            <img src="./myInviteBgtext.png" alt="">
+        </div>
+        <div class="reginBox">
+            <div class="userMes">
+                <div class="userImg">
+                    <img :src="userImg?'http://syimg.sheyuan.com'+userImg:'defaultheadImg.png'" alt="">
+                </div>
+                <p><span>{{userName}}</span>邀请您体验社员网新农业模式</p>
+            </div>
+            <div class="formBox">
+                <ul v-if='!successBool'>
+                    <li>
+                        <input id="telPhone" type="tel" maxlength="11" placeholder="请输入手机号快速注册">
+                    </li>
+                    <li>
+                        <input id="yzm" type="text" maxlength='4' placeholder="请输入验证码">
+                        <!-- <img class="sureImg" src="http://placehold.it/98x33" alt=""> -->
+                        <!-- <img class="sureImg" @click='refuseSureImg()' :src="baseUrl+'web/verifycode/codeimg?randomKey='+sureNumImg" alt="" /> -->
+                        <img class="sureImg" @click='refuseSureImg()' :src="sureNumImg" alt="" />
+                    </li>
+                    <li>
+                        <input class="sureNum" type="text" maxlength='4' placeholder="请输入校验码">
+                        <button class="sureBtn" v-if="userMoblieBool&&verifyCodeBool&&sureBtnBool" @click='getSureNums()'>获取校验码</button>
+                        <button class="sureBtns" v-if="!(userMoblieBool&&verifyCodeBool&&sureBtnBool)">{{getSureNumsText}}</button>
+                    </li>
+                </ul>
+                <div v-if='successBool' class="reginSuccess">
+                    <img src="./reginok.png" alt="">
+                    <p>恭喜您，注册成功!</p>
+                </div>
+                <div class="reginBtn">
+                    <p v-if='!successBool&&userMoblieBool&&verifyCodeBool&&reginBtnBool' @click='reginFn()'>立即注册</p>
+                    <p class="p" v-if='!successBool&&!(userMoblieBool&&verifyCodeBool&&reginBtnBool)'>立即注册</p>
+                    <p v-if='successBool'><a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.sheyuanwang.shop">获取更多供求信息请下载社员网APP</a></p>
+                </div>
+            </div>
+            <div class="downLead">
+                <div class="downLeadImg">
+                    <img src="sywdownload.jpg" alt="">
+                </div>
+                <div class="downLeadText">
+                    <h3>长按识别二维码下载</h3>
+                    <p>登录社员网App，享受100%产地供货 0服务费用，海量供求信息免费获取免费联系。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./jquery.min.js"></script>
+    <script src="./vue.min.js"></script>
+    <script src="./mui.min.js"></script>
+    <script>
+        mui.init();
+        // console.log(window.location.href.split('?')[1].split('&')[0].split('=')[1]);
+        // var baseUrl =  'http://456.sheyuan.com/bulk_api/'; // 测试
+        var baseUrl = 'http://dzncp.sheyuan.com/bulk_api/'; // 线上
+        // var baseUrls = 'http://share.dzncp.sheyuan.com/bulk_web/'; // 线上
+        
+        var inviteRegin = new Vue({
+            el: '#inviteRegin',
+            data: function () {
+                return {
+                    userImg: '',
+                    userName: '',
+                    userMoblie: '', 
+                    sureNumImg: '', //验证码图片
+                    // sureNums: '', // 手机校验码
+                    userCode: '', // 用户码
+                    randomKey: '', // 验证码图片str
+                    verifyCode: '', // 输入的验证码
+                    successBool: false, // 注册成功
+                    getSureNumsText: '获取校验码',
+                    filterBool: false,
+                    sureBtnBool: true,
+                    userMoblieBool: false,
+                    verifyCodeBool: false,
+                    reginBtnBool: false,
+                    smsCode: '' // 校验码
+                }
+            },
+            methods: {
+                reginFn: function () {
+                    // 注册按钮
+                    var that = this;
+                    $.get(baseUrl+'/web/user/regist', {
+                        mobile: that.mobile,
+                        smsCode: that.smsCode,
+                        userCode: that.userCode
+                    }, function (data, status) {
+                        console.log(data);
+                        if (data.code == 104) {
+                            that.filterBool = true;
+                            mui.toast(data.msg);
+                            // clearInterval(timers);
+                            // var timers = setInterval(function () {
+                            //     console.log('定时器')
+                            //     that.filterBool = false;
+                            // }, 2000);
+                            // clearInterval(timers);
+                        } else if (data.code == 105) {
+                            mui.toast('校验码错误');
+                        } else if (data.code == 0 && data.data.status == 1) {
+                            that.successBool = true;
+                        } else if (data.code == 0 && data.data.status == 0){
+                            mui.toast(data.data.errorMsg);
+                        } else {
+                            mui.toast('短信过于频繁');
+                        }
+                    });
+                },
+                closeFilter: function () {
+                    this.filterBool = false;
+                },
+                refuseSureImg: function () {
+                    // 重新请求验证码图片的按钮
+                    var that = this;
+                    $.ajax({
+                        url: baseUrl+'/web/verifycode/randomKey',
+                        type: 'get',
+                        success: function (res) {
+                            // console.log(res);
+                            that.randomKey = res.data.randomKey;
+                            that.sureNumImg = baseUrl+'web/verifycode/codeimg?randomKey='+res.data.randomKey;
+                        }
+                    })
+                },
+                getSureNums: function () {
+                    // 获取校验码的按钮
+                    // console.log(this.mobile,this.randomKey,this.verifyCode);
+                    var that = this;
+                    $.get(baseUrl+'/web/user/sendCode', {
+                        mobile: that.mobile,
+                        randomKey: that.randomKey,
+                        verifyCode: that.verifyCode
+                    }, function (data, status) {
+                        console.log(data);
+                        if (data.code == 104) {
+                            that.filterBool = true;
+                            mui.toast(data.msg);
+                            // clearInterval(timers);
+                            // var timers = setInterval(function () {
+                            //     console.log('定时器')
+                            //     that.filterBool = false;
+                            // }, 2000);
+                            // clearInterval(timers);
+                        } else if (data.code == 0 && data.data.status == 1) {
+                            clearInterval(timer);
+                            console.log('新用户');
+                            // that.verifyCodeBool = true;
+                            // that.userMoblieBool = true;
+                            that.sureBtnBool = false;
+                            //that.refuseSureImg();
+                            var count = 30;
+                            var timer = setInterval(function() {
+                                count--,
+                                that.getSureNumsText = count + 's后重新发送'
+                                if (count < 0) {
+                                    clearInterval(timer);
+                                    that.getSureNumsText = '获取校验码';
+                                    that.sureBtnBool = true;
+                                    that.refuseSureImg();
+                                }
+                            }, 1000);
+                        } else if (data.code == 0 && data.data.status == 0) {
+                            mui.toast(data.data.errorMsg);
+                        } else {
+                            mui.toast('短信过于频繁');
+                        }
+                    })
+                }
+            },
+            beforeMount: function () {
+                var that = this;
+                $.ajax({
+                    url: baseUrl+'/web/user/findByUserCode',
+                    type: 'post',
+                    data: {userCode: window.location.href.split('?')[1].split('&')[0].split('=')[1]},
+                    success: function (res) {
+                        that.userImg = res.data.headerImg;
+                        that.userName = res.data.name;
+                        that.userCode = res.data.userCode;
+                    }
+                })
+                $.ajax({
+                    url: baseUrl+'/web/verifycode/randomKey',
+                    type: 'get',
+                    success: function (res) {
+                        // console.log(res);
+                        // that.sureNumImg = res.data.randomKey;
+                        that.randomKey = res.data.randomKey;
+                        // console.log(that.randomKey);
+                        that.sureNumImg = baseUrl+'web/verifycode/codeimg?randomKey='+res.data.randomKey
+                    }
+                })
+                
+            },
+            mounted: function () {
+                var that = this;
+                // $('#telPhone').on('keyup', function (e) {
+                //     if ($(this).val().length == 11) {
+                //         $(this).blur();
+                //         $('#yzm').focus();
+                //     }
+                // })
+                $('#telPhone').on('keyup', function () {
+                    var reg = /^1[35678]\d{9}$/;
+                    var tel = $(this).val();
+                    if (reg.test($(this).val())) {
+                        that.mobile = $(this).val();
+                        that.userMoblieBool = true;
+                    } else {
+                        that.userMoblieBool = false;
+                    }
+                })
+                // $('#yzm').on('keyup', function (e) {
+                //     if ($(this).val().length >= 4) {
+                //         $(this).blur();
+                //         $('.sureNum').focus();
+                //     }
+                // })
+                $('#yzm').on('keyup', function () {
+                    var reg = /^[a-zA-z0-9]{4}$/;
+                    if (reg.test($(this).val())) {
+                        that.verifyCode = $(this).val();
+                        that.verifyCodeBool = true;
+                    } else {
+                        that.verifyCodeBool = false;
+                    }
+                })
+                // $('.sureNum').on('keyup', function (e) {
+                //     if ($(this).val().length >= 4) {
+                //         $(this).blur();
+                //         // $('.sureNum').focus();
+                //     }
+                // })
+                $('.sureNum').on('keyup', function () {
+                    
+                    var reg = /^[0-9]{4}$/;
+                    if (reg.test($(this).val())) {
+                        that.smsCode = $(this).val();
+                        that.reginBtnBool = true;
+                    } else {
+                        that.reginBtnBool = false;
+                    }
+                });
+                
+            }
+        })
+    </script>
+</body>
+</html>
+
